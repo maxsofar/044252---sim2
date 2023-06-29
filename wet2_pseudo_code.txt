@@ -1,0 +1,11 @@
+func multiply_8Nx8N(a: [1..8N], b: [1..8N]) -> [1..16N]
+    
+    result = [1..16N]
+    
+    for i = 1 to N
+        for j = 1 to N/2
+            product = multiply_16x8(get_8bit_chunk(a, i), get_16bit_chunk(b, j))
+            shifted_product = shift_left(product, by: (i - 1) * 8 + (j - 1) * 16)
+            result = add(result, shifted_product)
+    return result
+
